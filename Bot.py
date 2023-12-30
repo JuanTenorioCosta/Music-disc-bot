@@ -5,6 +5,7 @@ from discord.ext import commands
 import wavelink
 
 from cogs.MusicBot import MusicBotCog
+from cogs.TextBot import TextBotCog
 
 class Bot(commands.Bot):
     def __init__(self) -> None:
@@ -22,8 +23,8 @@ class Bot(commands.Bot):
 
     async def on_ready(self) -> None:
         logging.info(f"Logged in: {self.user} | {self.user.id}")
+        await self.add_cog(TextBotCog(self))
         await self.add_cog(MusicBotCog(self))
-
 
     async def on_wavelink_node_ready(self, payload: wavelink.NodeReadyEventPayload) -> None:
         logging.info(f"Wavelink Node connected: {payload.node!r} | Resumed: {payload.resumed}")

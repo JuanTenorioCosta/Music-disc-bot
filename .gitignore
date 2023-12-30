@@ -3,3 +3,4 @@ Lavalink.jar
 application.yml
 /logs
 __pycache__
+/FakeDBs

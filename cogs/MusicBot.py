@@ -1,12 +1,12 @@
 from typing import cast
-
 import discord
 from discord.ext import commands
-
 import wavelink
 
+from Bot import Bot
+
 class MusicBotCog(commands.Cog, name="Emilia DJ"):
-  def __init__(self, bot) -> None:
+  def __init__(self, bot: Bot) -> None:
     self.bot = bot
     self.nightcore = 0
 
@@ -41,7 +41,7 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
       if not hasattr(player, "home"):
           player.home = ctx.channel
       elif player.home != ctx.channel:
-          await ctx.send(f"No te pongas a pedirme que te ponga música si ya estoy tocando en otro lado.")
+          await ctx.send(f"No te pongas a pedirme que te ponga música en {ctx.author.voice.channel} si ya estoy tocando en {player.home}.")
           return
 
       # This will handle fetching Tracks and Playlists...
@@ -91,17 +91,15 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
       if not player:
           return
 
+      filters: wavelink.Filters = player.filters
       if self.nightcore == 0:
-          filters: wavelink.Filters = player.filters
           filters.timescale.set(pitch=1.2, speed=1.2, rate=1)
-          await player.set_filters(filters)
           self.nightcore = 1
       else:
-          filters: wavelink.Filters = player.filters
           filters.timescale.set(pitch=1, speed=1, rate=1)
-          await player.set_filters(filters)
           self.nightcore = 0
 
+      await player.set_filters(filters)
       await ctx.message.add_reaction("\u2705")
 
 
@@ -118,7 +116,7 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
 
   @commands.command(aliases=["dc", "disconnect"])
   async def vete(self, ctx: commands.Context) -> None:
-      """Desconecta al usuario."""
+      """Si te aburres puedes echarme"""
       player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
       if not player:
           return
@@ -129,22 +127,27 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
 
   @commands.command(aliases=["queue", "siguientes"])
   async def cola(self, ctx: commands.Context, *, pagina: int = commands.parameter(default=1, description="""
-  Página de siguientes cancines. Cada página muestra 5 canciones""")) -> None:
+  Página de siguientes cancines. Cada página muestra 10 canciones""")) -> None:
       """Lista de las siguientes canciones"""
       player : wavelink.Player = cast(wavelink.Player, ctx.voice_client)
       if not player:
           return
       
-      inicial = (pagina - 1) * 5
-      limite = (pagina - 1) + 5
-      contador = 0
-      cola = f'Página número {pagina} de canciones siguientes:\n'
-      for item in player.queue:
+      inicial: int = (pagina - 1) * 10
+      limite: int = (pagina - 1) * 10 + 10
+      contador: int = 0
+      existe: int = 0
+      cola: str = f'Página número {pagina} de canciones siguientes:\n'
+      for cancion in player.queue:
           if(contador >= inicial and contador < limite):
-              cola += f"**{contador}. {item.title}** de `{item.author}`.\n"
+              cola += f"{contador+1}. {cancion.title}\n"
+              existe = 1
 
           contador += 1
-      await ctx.send(f"Cola de canciones actual: \n{cola}")
+      if existe == 1:
+        await ctx.send(cola)
+      else:
+        await ctx.send(f"No hay tantas canciones en cola. Solo hay {contador+1} canciones en cola.")
 
 
   @commands.command(aliases=["delete"])
@@ -168,5 +171,6 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
       player : wavelink.Player = cast(wavelink.Player, ctx.voice_client)
       if not player:
           return
+      
       player.queue.shuffle()
       await ctx.message.add_reaction("\u2705")
