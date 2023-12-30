@@ -21,10 +21,12 @@
 > Finalmente crear un .env y añadir en una línea BOT_TOKEN='<-Tu token va aqui->' y en otra PASSWORD='<-Contraseña de tu application.yml (si usaste la de ejemplo: youshallnotpass->'
 
 > [!TIP]
-> Comandos de texto usando º al principio:<br>
-> play <-cancion->: Reproduce la canción que le indiques<br>
-> skip: Salta la canción actual<br>
-> nightcore: Activa el modo nightcore para la canción actual. Lo puedes desactivar volviendo a introducir el mismo comando.<br>
-> pausa | dale: Sirven para pausar y reproducir la canción.<br>
-> vete | dc: El bot se desconecta.<br>
-> comandos | ayuda: El bot devuelve un mensaje explicando los comandos disponibles
+> aleatorio Modo aleatorio para las canciones que hay en la cola<br>
+> borrar    Borro la canción con índice indicado. Consulta el número con ºcola.<br>
+> cola      Lista de las siguientes canciones.<br>
+> nightcore Activa/desactiva filtro nightcore.<br>
+> p         Reproduzco la canción que me pidas.<br>
+> pausa     Pausar o reproducir la música (cambia el estado en el que esté).<br>
+> saltar    Para la canción actual.<br>
+> vete      Desconecta al usuario.<br>
+> help      Muestra ayudas para el usuario.<br>

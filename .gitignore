@@ -2,3 +2,4 @@
 Lavalink.jar
 application.yml
 /logs
+__pycache__
