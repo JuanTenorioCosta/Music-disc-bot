@@ -13,7 +13,7 @@ class Bot(commands.Bot):
         intents.message_content = True
 
         discord.utils.setup_logging(level=logging.INFO)
-        super().__init__(command_prefix="º", intents=intents)
+        super().__init__(command_prefix="-", intents=intents)
 
     async def setup_hook(self) -> None:
         nodes = [wavelink.Node(uri="http://localhost:2333", password=config('PASSWORD'))] # port="2333"

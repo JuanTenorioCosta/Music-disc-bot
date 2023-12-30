@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands
 import wavelink
 
-from Bot import Bot
+import Bot as Bot
 
 class MusicBotCog(commands.Cog, name="Emilia DJ"):
   def __init__(self, bot: Bot) -> None:
