@@ -11,7 +11,7 @@
 > [!WARNING]
 > Dependencias: <br>
 > <a target="_blank" href="https://github.com/PythonistaGuild/Wavelink?tab=readme-ov-file#installation">Página de Wavelink de GitHub </a> Seguir instrucciones del install en función de tu S.O.<br>
-> Descargar Java 17+ (en el caso de este proyecto, 21). Enlace: <a target="_blank" href="https://www.oracle.com/es/java/technologies/downloads/"></a> Para comprobar si está instalado correctamente puedes ejecutar java --version en tu terminal<br>
+> Descargar Java 17+ (en el caso de este proyecto, 21). <a target="_blank" href="https://www.oracle.com/es/java/technologies/downloads/">Enlace para la descarga.</a> Para comprobar si está instalado correctamente puedes ejecutar java --version en tu terminal<br>
 > Descargar el .jar de Lavalink. Accede a <a target="_blank" href="https://github.com/lavalink-devs/Lavalink/releases">Releases</a> y descarga el .jar (está en assets). Importante, añade ese .jar al directorio donde descargues este proyecto.<br>
 > Copia el <a target="_blank" href="https://github.com/lavalink-devs/Lavalink/">application.yml de ejemplo de Lavalink</a>. Configúralo a tu gusto.<br><br>
 > Dependencias de python:<br>
