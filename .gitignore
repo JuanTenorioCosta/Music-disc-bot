@@ -3,4 +3,5 @@ Lavalink.jar
 application.yml
 /logs
 __pycache__
-/FakeDBs
+/FakeDBs/*.txt
+/FakeDBs/Ruleta/*.json

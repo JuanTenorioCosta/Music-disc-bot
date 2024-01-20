@@ -9,11 +9,12 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
   def __init__(self, bot: Bot) -> None:
     self.bot = bot
     self.nightcore = 0
+    self.loop = 0
 
   @commands.command(aliases=["play"])
   async def p(self, ctx: commands.Context, *, cancion: str = commands.parameter(default="se ve.mp3", description="""
   Título de la canción que quieres escuchar. Si no elige satisfactoriamente la canción puedes añadir el autor.
-  También puedes enviar la URL de una canción o PLAYLIST de Spotify.""")) -> None:
+  También puedes enviar la URL de una canción o PLAYLIST de Youtube, Spotify o Soundcloud.""")) -> None:
       """Reproduzco la canción que me pidas."""
       if not ctx.guild:
           return
@@ -36,13 +37,12 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
       # partial = AutoPlay will play songs for us, but WILL NOT fetch recommendations...
       # disabled = AutoPlay will do nothing...
       player.autoplay = wavelink.AutoPlayMode.enabled
-
       # Lock the player to this channel...
       if not hasattr(player, "home"):
-          player.home = ctx.channel
-      elif player.home != ctx.channel:
-          await ctx.send(f"No te pongas a pedirme que te ponga música en {ctx.author.voice.channel} si ya estoy tocando en {player.home}.")
-          return
+        player.home = ctx.channel
+      elif player.channel != ctx.author.voice.channel:
+        await ctx.send(f'{ctx.author.mention} no te pongas a pedirme que te ponga música en "{ctx.author.voice.channel}" si ya estoy tocando en "{player.channel}".')
+        return
 
       # This will handle fetching Tracks and Playlists...
       # Seed the doc strings for more information on this method...
@@ -114,7 +114,7 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
       await ctx.message.add_reaction("\u2705")
 
 
-  @commands.command(aliases=["dc", "disconnect"])
+  @commands.command(aliases=["dc", "disconnect", "stop", "para", "leave"])
   async def vete(self, ctx: commands.Context) -> None:
       """Si te aburres puedes echarme"""
       player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
@@ -174,3 +174,18 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
       
       player.queue.shuffle()
       await ctx.message.add_reaction("\u2705")
+
+  @commands.command(aliases=["bucle"])
+  async def loop(self, ctx: commands.Context) -> None:
+        """Poner en bucle la cola actual"""
+        player : wavelink.Player = cast(wavelink.Player, ctx.voice_client)
+        if not player:
+            return
+        
+        if self.loop == 0:
+            player.queue.mode = wavelink.QueueMode.loop_all
+            self.loop = 1
+        else:
+            player.queue.mode = wavelink.QueueMode.normal
+            self.loop = 0
+        await ctx.message.add_reaction("\u2705")

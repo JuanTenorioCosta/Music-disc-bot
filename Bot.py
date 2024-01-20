@@ -6,13 +6,14 @@ import wavelink
 
 from cogs.MusicBot import MusicBotCog
 from cogs.TextBot import TextBotCog
+from cogs.RuletaBot import RuletaBotCog
 
 class Bot(commands.Bot):
     def __init__(self) -> None:
         intents: discord.Intents = discord.Intents.default()
         intents.message_content = True
 
-        discord.utils.setup_logging(level=logging.INFO)
+        # discord.utils.setup_logging(level=logging.INFO)
         super().__init__(command_prefix="-", intents=intents)
 
     async def setup_hook(self) -> None:
@@ -25,6 +26,7 @@ class Bot(commands.Bot):
         logging.info(f"Logged in: {self.user} | {self.user.id}")
         await self.add_cog(TextBotCog(self))
         await self.add_cog(MusicBotCog(self))
+        await self.add_cog(RuletaBotCog(self))
 
     async def on_wavelink_node_ready(self, payload: wavelink.NodeReadyEventPayload) -> None:
         logging.info(f"Wavelink Node connected: {payload.node!r} | Resumed: {payload.resumed}")
