@@ -9,7 +9,7 @@ class SabiduriaRequestBuilder(RequestBuilder):
   def do_request( self, ctx: commands.Context ) -> dict:
     return super().do_request(ctx)
   
-  def build_answer_from_json(self, json_data) -> [str]:
+  def build_answer_from_json(self, json_data) -> list[str]:
     quote: str = json_data[0]["q"] + " -" + json_data[0]["a"]
     return [quote]
   
@@ -30,10 +30,10 @@ class ValorantRequestBuilder(RequestBuilder):
     json_data: dict = super().do_request(ctx)
     return json_data["data"][ self.get_random_number(ctx, self.maxNumber) ]
   
-  def build_answer_from_json(self, json_data: dict) -> [str]:
+  def build_answer_from_json(self, json_data: dict) -> list[str]:
     agente: str = f'Eres {json_data["displayName"]}. ¿Y ese rifle?:'
     imagen: str = f'{json_data["fullPortraitV2"]}'
     return [agente, imagen]
   
-  def build_answer(self, ctx: commands.Context) -> [str]:
+  def build_answer(self, ctx: commands.Context) -> list[str]:
     return super().build_answer(ctx)

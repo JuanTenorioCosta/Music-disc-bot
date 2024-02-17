@@ -50,9 +50,9 @@ class RuletaModel(DbHandler):
     # Escribir un juego para un usuario
     def writeGame(self, username: str, content: dict) -> None:
       try:
-        games: [dict] = self._getById( username )
+        games: list[dict] = self._getById( username )
       except AttributeError:
-        games: [dict] = []
+        games: list[dict] = []
       
       for game in games:
         if(game["name"] == content["name"]):
@@ -76,7 +76,7 @@ class RuletaModel(DbHandler):
     # Borrar solo un juego de un usuario
     def deleteGame( self, username: str, gameName: str ) -> None:
       try:
-        games: [dict] = self._getById( username )
+        games: list[dict] = self._getById( username )
       except AttributeError:
         raise AttributeError
       

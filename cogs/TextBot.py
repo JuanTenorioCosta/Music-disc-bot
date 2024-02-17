@@ -4,7 +4,7 @@ import Bot as Bot
 from classes.TextCommand import TextCommand
 from classes.Builders.SimpleBuilders.SimpleBuilder import SaludarBuilder, TulaBuilder
 from classes.Builders.RequestBuilders.RequestBuilders import ValorantRequestBuilder, SabiduriaRequestBuilder
-from classes.Builders.RequestBuilders.RequestBuildersById import RickMortyRequestBuilderById, DisneyRequestBuilderById, MTGRequestBuilderById
+from classes.Builders.RequestBuilders.RequestBuildersById import RickMortyRequestBuilderById, DisneyRequestBuilderById, MTGRequestBuilderById, PokemonRequestBuilderById
 
 
 class TextBotCog(commands.Cog, name="Comandos de texto"):
@@ -17,7 +17,8 @@ class TextBotCog(commands.Cog, name="Comandos de texto"):
       "sabiduria": TextCommand(SabiduriaRequestBuilder()),
       "rick": TextCommand(RickMortyRequestBuilderById()),
       "disney": TextCommand(DisneyRequestBuilderById()),
-      "mtg": TextCommand(MTGRequestBuilderById())
+      "mtg": TextCommand(MTGRequestBuilderById()),
+      "pokemon": TextCommand(PokemonRequestBuilderById())
     }
 
 
@@ -57,7 +58,7 @@ class TextBotCog(commands.Cog, name="Comandos de texto"):
     await self.answerers["disney"].answer(ctx)
 
   
-  @commands.command(aliases=["magic", "carton"])
-  async def mtg(self, ctx: commands.Context) -> None:
-    """Te enseño qué carta de MTG (Magic The Gathering) eres hoy"""
-    await self.answerers["mtg"].answer(ctx)
+  @commands.command(aliases=["poke"])
+  async def pokemon(self, ctx: commands.Context) -> None:
+    """Cuidado con los arbustos"""
+    await self.answerers["pokemon"].answer(ctx)

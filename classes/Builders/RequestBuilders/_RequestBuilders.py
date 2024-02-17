@@ -20,11 +20,11 @@ class RequestBuilder(BuilderInterface):
 
 
   @abstractmethod
-  def build_answer_from_json( self, json_data: dict ) -> [str]:
+  def build_answer_from_json( self, json_data: dict ) -> list[str]:
     pass
 
 
-  def build_answer( self, ctx: commands.Context ) -> [str]:
+  def build_answer( self, ctx: commands.Context ) -> list[str]:
     return self.build_answer_from_json( self.do_request(ctx) )
 
 
@@ -42,9 +42,9 @@ class RequestBuilderById(RequestBuilder):
   
 
   @abstractmethod
-  def build_answer_from_json(self, json_data: dict) -> [str]:
+  def build_answer_from_json(self, json_data: dict) -> list[str]:
     pass
 
 
-  def build_answer(self, ctx: commands.Context) -> [str]:
+  def build_answer(self, ctx: commands.Context) -> list[str]:
     return super().build_answer(ctx)

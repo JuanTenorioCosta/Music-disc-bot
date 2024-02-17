@@ -9,12 +9,12 @@ class RickMortyRequestBuilderById(RequestBuilderById):
   def do_request(self, ctx: commands.Context) -> dict:
     return super().do_request(ctx)
   
-  def build_answer_from_json(self, json_data: dict) -> [str]:
+  def build_answer_from_json(self, json_data: dict) -> list[str]:
     personaje: str = f'No creo que a Rick le vaya a gustar que tu seas {json_data["name"]}.'
     imagen: str = f'{json_data["image"]}'
     return [personaje, imagen]
   
-  def build_answer(self, ctx: commands.Context) -> [str]:
+  def build_answer(self, ctx: commands.Context) -> list[str]:
     return super().build_answer(ctx)
 
 class DisneyRequestBuilderById(RequestBuilderById):
@@ -24,13 +24,13 @@ class DisneyRequestBuilderById(RequestBuilderById):
   def do_request(self, ctx: commands.Context) -> dict:
     return super().do_request(ctx)
   
-  def build_answer_from_json(self, json_data: dict) -> [str]:
+  def build_answer_from_json(self, json_data: dict) -> list[str]:
     json_data: dict = json_data["data"]
     personaje: str = f'El famosísimo personaje {json_data["name"]}.'
     imagen: str = f'{json_data["imageUrl"]}'
     return [personaje, imagen]
   
-  def build_answer(self, ctx: commands.Context) -> [str]:
+  def build_answer(self, ctx: commands.Context) -> list[str]:
     return super().build_answer(ctx)
   
 class MTGRequestBuilderById(RequestBuilderById):
@@ -40,11 +40,26 @@ class MTGRequestBuilderById(RequestBuilderById):
   def do_request(self, ctx: commands.Context) -> dict:
     return super().do_request(ctx)
   
-  def build_answer_from_json(self, json_data: dict) -> [str]:
+  def build_answer_from_json(self, json_data: dict) -> list[str]:
     json_data: dict = json_data["card"]
     personaje: str = f'Cartón espantoso {json_data["name"]}.'
     imagen: str = f'{json_data["imageUrl"]}'
     return [personaje, imagen]
   
-  def build_answer(self, ctx: commands.Context) -> [str]:
+  def build_answer(self, ctx: commands.Context) -> list[str]:
+    return super().build_answer(ctx)
+  
+class PokemonRequestBuilderById(RequestBuilderById):
+  def __init__(self):
+    super().__init__('https://pokeapi.co/api/v2/pokemon/', 1302)
+  
+  def do_request(self, ctx: commands.Context) -> dict:
+    return super().do_request(ctx)
+  
+  def build_answer_from_json(self, json_data: dict) -> list[str]:
+    personaje: str = f'No deberías haberte metido en este arbusto. Cuidado con {json_data["name"]}.'
+    imagen: str = f'{json_data["sprites"]["front_default"]}'
+    return [personaje, imagen]
+  
+  def build_answer(self, ctx: commands.Context) -> list[str]:
     return super().build_answer(ctx)

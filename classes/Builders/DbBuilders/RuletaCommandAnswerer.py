@@ -33,7 +33,7 @@ class RuletaCommandAnswerer():
     return answer
   
 
-  def nuevo( self, ctx: commands.Context, nombreJuego: str, numJugadores: [int]) -> str:
+  def nuevo( self, ctx: commands.Context, nombreJuego: str, numJugadores: list[int]) -> str:
     nuevoJuego: dict
     answer: str
     if len(numJugadores) == 0:
