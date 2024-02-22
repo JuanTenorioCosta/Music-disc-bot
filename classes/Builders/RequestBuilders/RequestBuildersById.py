@@ -51,7 +51,7 @@ class MTGRequestBuilderById(RequestBuilderById):
   
 class PokemonRequestBuilderById(RequestBuilderById):
   def __init__(self):
-    super().__init__('https://pokeapi.co/api/v2/pokemon/', 1302)
+    super().__init__('https://pokeapi.co/api/v2/pokemon/', 1025)
   
   def do_request(self, ctx: commands.Context) -> dict:
     return super().do_request(ctx)
