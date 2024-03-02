@@ -116,7 +116,7 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
 
   @commands.command(aliases=["dc", "disconnect", "stop", "para", "leave"])
   async def vete(self, ctx: commands.Context) -> None:
-      """Si te aburres puedes echarme"""
+      """Si te aburres puedes echarme."""
       player: wavelink.Player = cast(wavelink.Player, ctx.voice_client)
       if not player:
           return
@@ -128,7 +128,7 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
   @commands.command(aliases=["queue", "siguientes"])
   async def cola(self, ctx: commands.Context, *, pagina: int = commands.parameter(default=1, description="""
   Página de siguientes cancines. Cada página muestra 10 canciones""")) -> None:
-      """Lista de las siguientes canciones"""
+      """Lista de las siguientes canciones."""
       player : wavelink.Player = cast(wavelink.Player, ctx.voice_client)
       if not player:
           return
@@ -153,7 +153,7 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
   @commands.command(aliases=["delete"])
   async def borrar(self, ctx: commands.Context, *, indice: int = commands.parameter(default=1, description="""
   Puesto en la cola de la canción a borrar. Tiene que ser mayor que 1""")) -> None:
-      """Borro la canción que me pidas si me dices donde está en la cola. Puedes usar ºcola para ver que canciones son las siguientes"""
+      """Borro la canción que me pidas si me dices donde está en la cola. Puedes usar ºcola para ver que canciones son las siguientes."""
       player : wavelink.Player = cast(wavelink.Player, ctx.voice_client)
       if not player:
           return
@@ -167,7 +167,7 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
 
   @commands.command(aliases=["barajar", "shuffle"])
   async def aleatorio(self, ctx: commands.Context) -> None:
-      """Modo aleatorio para las canciones que hay en la cola"""
+      """Modo aleatorio para las canciones que hay en la cola."""
       player : wavelink.Player = cast(wavelink.Player, ctx.voice_client)
       if not player:
           return
@@ -177,7 +177,7 @@ class MusicBotCog(commands.Cog, name="Emilia DJ"):
 
   @commands.command(aliases=["bucle"])
   async def loop(self, ctx: commands.Context) -> None:
-        """Poner en bucle la cola actual"""
+        """Poner en bucle la cola actual."""
         player : wavelink.Player = cast(wavelink.Player, ctx.voice_client)
         if not player:
             return

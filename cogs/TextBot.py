@@ -24,41 +24,41 @@ class TextBotCog(commands.Cog, name="Comandos de texto"):
 
   @commands.command(aliases=["saluda"])
   async def hola(self, ctx: commands.Context) -> None:
-    """Te digo hola"""
+    """Te digo hola."""
     await self.answerers["hola"].answer(ctx)
 
 
   @commands.command()
   async def tula(self, ctx: commands.Context) -> None:
-    """Te digo cuánto te mide la tula hoy"""
+    """Te digo cuánto te mide la tula hoy."""
     await self.answerers["tula"].answer(ctx)
 
 
   @commands.command()
   async def valorant(self, ctx: commands.Context) -> None:
-    """Te digo qué personaje de Valorant eres hoy"""
+    """Te digo qué personaje de Valorant eres hoy."""
     await self.answerers["valorant"].answer(ctx)
 
 
   @commands.command()
   async def sabiduria(self, ctx: commands.Context) -> None:
-    """Te digo una frase para motivarte"""
+    """Te digo una frase para motivarte."""
     await self.answerers["sabiduria"].answer(ctx)
 
 
   @commands.command(aliases=["morty", "rickymorty"])
   async def rick(self, ctx: commands.Context) -> None:
-    """Te enseño qué personaje de Rick y Morty eres hoy"""
+    """Te enseño qué personaje de Rick y Morty eres hoy."""
     await self.answerers["rick"].answer(ctx)
   
   
   @commands.command()
   async def disney(self, ctx: commands.Context) -> None:
-    """Te enseño qué personaje de Disney (incluye Disney Channel) eres hoy"""
+    """Te enseño qué personaje de Disney (incluye Disney Channel) eres hoy."""
     await self.answerers["disney"].answer(ctx)
 
   
   @commands.command(aliases=["poke"])
   async def pokemon(self, ctx: commands.Context) -> None:
-    """Cuidado con los arbustos"""
+    """Cuidado con los arbustos."""
     await self.answerers["pokemon"].answer(ctx)
